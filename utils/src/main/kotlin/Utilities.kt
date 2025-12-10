@@ -23,3 +23,9 @@ interface Solution<IT, T>  {
     fun part1(input: IT): T
     fun part2(input: IT): T
 }
+
+fun getResourceAsText(path: String): String? =
+    object {}.javaClass.getResource(path)?.readText()
+
+fun readResourceAsLines(path: String): List<String>? =
+    getResourceAsText(path)?.let { it.split("\n") }
