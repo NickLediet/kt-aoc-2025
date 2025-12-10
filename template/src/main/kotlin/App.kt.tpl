@@ -10,11 +10,11 @@ class Day%AOC_DAY%Solution() : Solution<List<String>, Long> {
     }
   
     override fun part1(input: List<String>): Long {
-        return input.size().toLong()
+        return input.size.toLong()
     }
 
     override fun part2(input: List<String>): Long {
-        return input.size().toLong()
+        return input.size.toLong()
     }
 }
 

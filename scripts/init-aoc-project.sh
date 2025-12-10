@@ -35,3 +35,6 @@ if ! grep -q "include(\":day$DAY\")" "settings.gradle.kts"; then
 include(\":day$DAY\")
 " "settings.gradle.kts"
 fi
+
+echo "🎉 Project initialized successfully"
+echo "🚨 Please remember to update the resource files in the project directory"
