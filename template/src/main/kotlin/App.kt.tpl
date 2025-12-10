@@ -1,4 +1,4 @@
-package com.nle.aoc.day2
+package com.nle.aoc.day%AOC_DAY%
 
 import com.nle.aoc.utils.Solution
 import com.nle.aoc.utils.readResourceAsLines
