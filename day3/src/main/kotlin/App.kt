@@ -15,7 +15,7 @@ class Day3Solution() : Solution<List<String>, Long> {
         input.forEach {
             var leftValueIndex = 0;
             println("Processing line $it")
-            for(i in 0..it.length - 1) { // Offset by 1 as a second char is needed to correctly build the string.  If the max value is found second from last it's still valid
+            for(i in 0..it.length - 2) { // Offset by 1 as a second char is needed to correctly build the string.  If the max value is found second from last it's still valid
                 // println("Processing char at index $i: ${it[i]}")
                 // Case to handle 9s
                 if(it[i] == MAX_VALUE) {
@@ -33,10 +33,9 @@ class Day3Solution() : Solution<List<String>, Long> {
             var leftChar = it[leftValueIndex]
             println("Left char: $leftChar (index of $leftValueIndex)")
             var rightValueIndex = 0;
-            var rightStartingIndex = leftValueIndex + 1;
-            println("Starting to search for right value after index $leftValueIndex ($rightStartingIndex)")
             var substring = it.substring(leftValueIndex + 1)
             println("Processing substring: $substring")
+            println("substring has length of ${substring.length}" )
             for(i in 0..substring.length - 1) {
                 println("i = $i, substring[i] = ${substring[i]}")
                 if(substring[i] == MAX_VALUE) {

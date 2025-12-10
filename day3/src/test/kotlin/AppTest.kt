@@ -6,7 +6,11 @@ import kotlin.test.assertEquals
 
 internal class AppTest {
     @Test
-    fun exampleTestShouldPass() {
-        assertEquals(true, true)
+    fun testPart1WithExampleInputShouldReturn357AsTheAnswer() {
+        val input = readResourceAsLines("/example-input.txt")
+        val solution = Day3Solution()
+        input?.let {
+            assertEquals(357, solution.part1(it))
+        } ?: throw Exception("No input found")
     }
 }
