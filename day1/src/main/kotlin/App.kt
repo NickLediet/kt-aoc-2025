@@ -17,20 +17,10 @@ class Day1Solution(val dialSize: Int = 100, val startPos: Int = 50) : Solution<L
         var pos = startPos
         input.forEach {
             var (direction, change) = extractDirectionAndChange(it)
-            // Check if dir is L, if so change the sign of change
-            if(direction == 'L') change *= -1
-            var newPos = (pos + change)
+            if (direction == 'L') change *= -1
+            val newPos = pos + change
             println("pos: $pos, direction: $direction, change: $change, newPos: $newPos")
-            
-            if(newPos < 0) {
-                pos = dialSize + newPos
-                println("out of bounds to the left, new pos: $pos, change: $change")
-            } else if(newPos >= dialSize) {
-                pos = (newPos / dialSize)
-                println("out of bounds to the right, new pos: $pos")
-            } else {
-                pos = newPos
-            }
+            pos = ((newPos % dialSize) + dialSize) % dialSize
             if(pos == 0) ans += 1
          }
         return ans
