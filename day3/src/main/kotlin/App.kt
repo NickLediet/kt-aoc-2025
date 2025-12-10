@@ -65,7 +65,7 @@ class Day3Solution() : Solution<List<String>, Long> {
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
-    var fileContents = readResourceAsLines("/example-input.txt")
+    var fileContents = readResourceAsLines("/input.txt")
     var solution = Day3Solution()
     fileContents?.let {
         println("Part 1: ${solution.part1(fileContents)}")
