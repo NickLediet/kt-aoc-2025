@@ -37,11 +37,20 @@ internal class AppTest {
     }
 
     @Test
-    fun testPart1WithRealInputShouldReturn27180728081AsTheAnswer() {
+    fun testPart1WithRealInputShouldReturn19219508902AsTheAnswer() {
         val input = readResourceAsLines("/input.txt", ",")
         val solution = Day2Solution()
         input?.let {
-            assertEquals(27180728081L, solution.part1(it))
+            assertEquals(19219508902L, solution.part1(it))
+        } ?: throw Exception("No input found")
+    }
+
+    @Test
+    fun testPart2WithRealInputShouldReturn27180728081AsTheAnswer() {
+        val input = readResourceAsLines("/input.txt", ",")
+        val solution = Day2Solution()
+        input?.let {
+            assertEquals(27180728081, solution.part2(it))
         } ?: throw Exception("No input found")
     }
 }
