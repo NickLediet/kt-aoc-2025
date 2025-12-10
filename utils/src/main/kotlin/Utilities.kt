@@ -27,5 +27,5 @@ interface Solution<IT, T>  {
 fun getResourceAsText(path: String): String? =
     object {}.javaClass.getResource(path)?.readText()
 
-fun readResourceAsLines(path: String): List<String>? =
-    getResourceAsText(path)?.let { it.split("\n") }
+fun readResourceAsLines(path: String, separator: String = "\n"): List<String>? =
+    getResourceAsText(path)?.let { it.split(separator) }
