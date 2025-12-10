@@ -1,20 +1,29 @@
 package com.nle.aoc.day1
 
-import com.nle.aoc.utils.Printer
+import com.nle.aoc.utils.Solution
+
+fun getResourceAsText(path: String): String? =
+    object {}.javaClass.getResource(path)?.readText()
+
+class Day1Solution() : Solution<List<String>, Int> {
+    override fun part1(input: List<String>): Int {
+       return  5
+    }
+
+    override fun part2(input: List<String>): Int{
+        return 5
+    }
+}
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
-    val name = "Kotlin"
-    //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-    // to see how IntelliJ IDEA suggests fixing it.
-    val message = "Hello, " + name + "!"
-    val printer = Printer(message)
-    printer.printMessage()
+    var fileContents = getResourceAsText("/example-input.txt")
+//    fileContents ? println(fileContents) : println("No file found")
+    fileContents?.let {
+        println(it)
+    } ?: println("No file found")
 
-    for (i in 1..5) {
-        //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-        // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        println("i = $i")
-    }
+    // Read lines into a list
+
 }

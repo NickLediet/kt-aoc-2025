@@ -18,3 +18,8 @@ class Printer(val message: String) {
         println(message)
     }
 }
+
+interface Solution<IT, T>  {
+    fun part1(input: IT): T
+    fun part2(input: IT): T
+}
