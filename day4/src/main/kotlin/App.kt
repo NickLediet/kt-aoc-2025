@@ -33,20 +33,38 @@ class Day4Solution(val paperChar: Char = '@') : Solution<List<String>, Long> {
         return ans
     }
 
+	private fun checkNumberOfAdjacentPaperChars(grid: Array<CharArray>, rowIndex: Int, colIndex: Int): Int {
+		var ans = 0
+		if(rowIndex > 0 && grid[rowIndex - 1][colIndex] == paperChar) ans += 1
+		if(rowIndex < grid.size - 1 && grid[rowIndex + 1][colIndex] == paperChar) ans += 1
+		if(colIndex > 0 && grid[rowIndex][colIndex - 1] == paperChar) ans += 1
+		if(colIndex < grid[rowIndex].size - 1 && grid[rowIndex][colIndex + 1] == paperChar) ans += 1
+		// Diagonals
+		if(rowIndex > 0 && colIndex > 0 && grid[rowIndex - 1][colIndex - 1] == paperChar) ans += 1
+		if(rowIndex > 0 && colIndex < grid[rowIndex].size - 1 && grid[rowIndex - 1][colIndex + 1] == paperChar) ans += 1
+		if(rowIndex < grid.size - 1 && colIndex > 0 && grid[rowIndex + 1][colIndex - 1] == paperChar) ans += 1
+		if(rowIndex < grid.size - 1 && colIndex < grid[rowIndex].size - 1 && grid[rowIndex + 1][colIndex + 1] == paperChar) ans += 1
+		return ans
+	}
+
     override fun part2(input: List<String>): Long {
-        var ans = 0L
-        // for((rowIndex, row) in input.withIndex()) {
-        //     for((colIndex, col) in row.withIndex()) {
-        //         if(col != paperChar) continue
-		// 		if(checkNumberOfAdjacentPaperChars(input, rowIndex, colIndex) < 4) {
-        //             ans += 1
-        //             var lineString = row;
-        //             lineString[colIndex] = 'x';
-        //             input[rowIndex] = lineString;
-        //         }
-        //     }
-        // }
-        return ans
+		var ans = 0L
+		val grid = input.map { it.toCharArray() }.toTypedArray()
+		var removedInPass: Int
+		do {
+			removedInPass = 0
+			for((rowIndex, row) in grid.withIndex()) {
+				for(colIndex in row.indices) {
+					if(grid[rowIndex][colIndex] != paperChar) continue
+					if(checkNumberOfAdjacentPaperChars(grid, rowIndex, colIndex) < 4) {
+						ans += 1
+						grid[rowIndex][colIndex] = 'x'
+						removedInPass += 1
+					}
+				}
+			}
+		} while (removedInPass > 0)
+		return ans
     }
 }
 
