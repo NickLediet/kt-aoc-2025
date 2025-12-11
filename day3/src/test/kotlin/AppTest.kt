@@ -22,4 +22,13 @@ internal class AppTest {
             assertEquals(17493, solution.part1(it))
         } ?: throw Exception("No input found")
     }
+
+    @Test
+    fun testPart2WithExampleInputShouldReturn3121910778619AsTheAnswer() {
+        val input = readResourceAsLines("/example-input.txt")
+        val solution = Day3Solution()
+        input?.let {
+            assertEquals(3121910778619L, solution.part2(it))
+        } ?: throw Exception("No input found")
+    }
 }

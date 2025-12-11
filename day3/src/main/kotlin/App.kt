@@ -4,13 +4,12 @@ import com.nle.aoc.utils.Solution
 import com.nle.aoc.utils.readResourceAsLines
 import java.lang.Math
 
-class Day3Solution() : Solution<List<String>, Long> {
+class Day3Solution(val MAX_VALUE: Char = '9') : Solution<List<String>, Long> {
     init {
         println("Initialized Day 3 solution")
     }
   
     override fun part1(input: List<String>): Long {
-        var MAX_VALUE = '9';
         var ans = 0L
         input.forEach {
             var leftValueIndex = 0;
@@ -57,18 +56,44 @@ class Day3Solution() : Solution<List<String>, Long> {
         return ans
     }
 
+    // Use maxIterations so we're always searching in a valid length substring
+    fun buildString(input: String, maxIterations: Int): String { // Note: If stackoverflows, we need to memoize the results
+        var largestValueIndex = 0;
+        println("Processing line $input")
+        for(i in 0..input.length - maxIterations - 1) { // Offset by 1 as a second char is needed to correctly build the string.  If the max value is found second from last it's still valid
+            // Case to handle 9s
+            if(input[i] == MAX_VALUE) {
+                println("Found 9 at index $i of line $input")
+                largestValueIndex = i;
+                break
+            }
+
+            // Case where value is less than 9, but greater than the current largest value
+            if(input[i].code > input[largestValueIndex].code) {
+                println("Found new largest value at index $i of line $input. (${input[i]} > ${input[largestValueIndex]})")
+                largestValueIndex = i;
+            }
+        }
+        println("Largest value index: $largestValueIndex with a value of ${input[largestValueIndex]}")
+        return input[largestValueIndex].toString() + buildString(input.substring(largestValueIndex + 1), maxIterations - 1)
+    }
+
     override fun part2(input: List<String>): Long {
-        return input.size.toLong()
+        var ans = 0L
+        input.forEach {
+            ans += buildString(it, 12).toLong()
+        }
+        return ans
     }
 }
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
-    var fileContents = readResourceAsLines("/input.txt")
+    var fileContents = readResourceAsLines("/example-input.txt")
     var solution = Day3Solution()
     fileContents?.let {
-        println("Part 1: ${solution.part1(fileContents)}")
+        // println("Part 1: ${solution.part1(fileContents)}")
         println("Part 2: ${solution.part2(fileContents)}")
     } ?: println("No file found")
 
